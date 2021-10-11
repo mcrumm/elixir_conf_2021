@@ -9,7 +9,7 @@ defmodule Inter.Application do
   def start(_type, _args) do
     children = [
       # Start the Ecto repository
-      Inter.Repo,
+      # Inter.Repo,
       # Start the Telemetry supervisor
       InterWeb.Telemetry,
       # Start the PubSub system
