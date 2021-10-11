@@ -29,6 +29,7 @@ defmodule InterWeb.Endpoint do
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
     plug Phoenix.Ecto.CheckRepoStatus, otp_app: :inter
+    plug PhoenixWeb.Profiler
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,

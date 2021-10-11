@@ -23,6 +23,7 @@ defmodule InterWeb do
 
       import Plug.Conn
       import InterWeb.Gettext
+      import PhoenixWeb.Profiler, only: [dump: 1]
       alias InterWeb.Router.Helpers, as: Routes
     end
   end
@@ -46,6 +47,8 @@ defmodule InterWeb do
     quote do
       use Phoenix.LiveView,
         layout: {InterWeb.LayoutView, "live.html"}
+
+      use PhoenixWeb.LiveProfiler
 
       unquote(view_helpers())
     end
@@ -86,6 +89,8 @@ defmodule InterWeb do
 
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
+
+      import PhoenixWeb.Profiler, only: [dump: 1]
 
       import InterWeb.ErrorHelpers
       import InterWeb.Gettext
