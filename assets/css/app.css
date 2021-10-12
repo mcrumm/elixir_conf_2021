@@ -3,6 +3,74 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 16px;
+  overflow-wrap: break-word;
+}
+
+code {
+  font-family: "JetBrains Mono", Consolas, Menlo, Monaco, "Liberation Mono", monospace;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+h1 code,
+h2 code,
+h3 code {
+  font-size: inherit;
+}
+
+main {
+  text-align: center;
+}
+
+header nav ol,
+header nav ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+header nav li {
+  display: inline;
+}
+
+header nav a {
+  display: inline;
+}
+
+header nav li+li::before {
+  display: inline-block;
+  margin: 0 1em;
+  transform: rotate(15deg);
+  border-right: 0.1em solid currentColor;
+  height: 0.8em;
+  content: '';
+}
+
+pre {
+  text-align: left;
+  border: 0 none;
+  padding: 1rem;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+pre>code {
+  background-color: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+details>summary {
+  cursor: pointer;
+}
+
+details:not([open])>summary::after {
+  content: " (click to show)"
+}
+
+details[open]>summary::after {
+  content: " (click to hide)"
 }
 
 /* Alerts and form errors used by phx.new */

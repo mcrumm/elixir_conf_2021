@@ -1,0 +1,30 @@
+<h1>2. Inside Navigation</h1>
+<section class="row">
+  <section class="column">
+    <h2>2a. Redirect</h2>
+
+      <dl>
+        <dt>Client</dt><dd><kbd>live_redirect</kbd></dd>
+        <dt>Server</dt><dd><kbd>push_redirect</kbd></dd>
+      </dl>
+
+      <h3>Redirect Lifecycle: <code>mount &vert;&gt; handle_params &vert;&gt; render</code></h3>
+  </section>
+  <section class="column">
+
+    <h2>2b. Patch</h2>
+
+      <dl>
+        <dt>Client</dt><dd><kbd>live_patch</kbd></dd>
+        <dt>Server</dt><dd><kbd>push_patch</kbd></dd>
+      </dl>
+
+      <h3>Patch Lifecycle: <code>handle_params &vert;&gt; render</code></h3>
+    </section>
+</section>
+
+<section class="row">
+  <section class="column">
+    <.code_inspector file={@file} />
+  </section>
+</section>

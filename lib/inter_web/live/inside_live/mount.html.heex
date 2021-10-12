@@ -1,0 +1,18 @@
+<h1>1. Inside the <code>mount</code> lifecycle</h1>
+<section class="row">
+  <section class="column">
+    <p>Each <strong>LiveView</strong> session begins with a stateless HTTP request. You may have heard this affectionately referred to as a <em>dead</em> render. From these humble beginnings, statefulness will emerge.</p>
+
+    <p>We can gather <strong>connect info</strong> from the request. For example, <em>your browser's <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent#considerations_before_using_browser_detection">user agent</a> is:</em></p>
+    <p><pre><code><%= inspect(@ua) %></code></pre></p>
+
+    <p>...and your <em>browser's language is</em><code><%= inspect(@lang) %></code>.</p>
+  </section>
+</section>
+
+<section class="row">
+  <section class="column code">
+    <h2>Lifecycle: <code>mount &vert;&gt; render</code></h2>
+    <.code_inspector file={@file} />
+  </section>
+</section>

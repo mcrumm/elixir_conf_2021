@@ -1,11 +1,22 @@
+<header>
+  <section class="container">
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <ol>
+        <li><%= live_redirect"The LiveView Lifecycle", to: Routes.page_path(InterWeb.Endpoint, :index) %></li>
+        <li><%= live_redirect"Mount", to: Routes.inside_mount_path(InterWeb.Endpoint, :index) %></li>
+        <li><%= live_redirect"Navigation", to: Routes.inside_navigation_path(InterWeb.Endpoint, :index) %></li>
+        <li><%= live_redirect"Events", to: Routes.inside_events_path(InterWeb.Endpoint, :index) %></li>
+        <li><%= live_redirect"Messages", to: Routes.inside_messages_path(InterWeb.Endpoint, :index) %></li>
+        <li><a href="/">Sessions</a></li>
+        <li><a href="/">Hooks</a></li>
+      </ol>
+    </nav>
+  </section>
+</header>
 <main class="container">
-  <p class="alert alert-info" role="alert"
-    phx-click="lv:clear-flash"
-    phx-value-key="info"><%= live_flash(@flash, :info) %></p>
+  <p class="alert alert-info" role="alert" phx-click="lv:clear-flash" phx-value-key="info"><%= live_flash(@flash, :info) %></p>
 
-  <p class="alert alert-danger" role="alert"
-    phx-click="lv:clear-flash"
-    phx-value-key="error"><%= live_flash(@flash, :error) %></p>
+  <p class="alert alert-danger" role="alert" phx-click="lv:clear-flash" phx-value-key="error"><%= live_flash(@flash, :error) %></p>
 
   <%= @inner_content %>
 </main>

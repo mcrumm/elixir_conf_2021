@@ -1,3 +1,18 @@
+<header>
+  <section class="container">
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <ol>
+        <li><%= link "The LiveView Lifecycle", to: Routes.page_path(InterWeb.Endpoint, :index) %></li>
+        <li><%= link "Mount", to: Routes.inside_mount_path(InterWeb.Endpoint, :index) %></li>
+        <li><%= link "Navigation", to: Routes.inside_navigation_path(InterWeb.Endpoint, :index) %></li>
+        <li><%= link "Events", to: Routes.inside_events_path(InterWeb.Endpoint, :index) %></li>
+        <li><%= link "Messages", to: Routes.inside_messages_path(InterWeb.Endpoint, :index) %></li>
+        <li><a href="/">Sessions</a></li>
+        <li><a href="/">Hooks</a></li>
+      </ol>
+    </nav>
+  </section>
+</header>
 <main class="container">
   <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
   <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>

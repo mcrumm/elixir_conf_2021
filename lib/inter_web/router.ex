@@ -19,6 +19,11 @@ defmodule InterWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    live "/inside", InsideLive, :index
+    live "/inside/mount", InsideLive.Mount, :index
+    live "/inside/navigation", InsideLive.Navigation, :index
+    live "/inside/events", InsideLive.Events, :index
+    live "/inside/messages", InsideLive.Messages, :index
   end
 
   # Other scopes may use custom stacks.
