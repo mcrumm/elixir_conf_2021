@@ -7,11 +7,11 @@
       </div>
       <code class="counter"><%= @changes %></code>
       <div class="controls">
-      <form id="color-swatch" action="#" phx-change="change-color">
-        <.rgb_slider name="red" value={@rgb.red} />
-        <.rgb_slider name="green" value={@rgb.green} />
-        <.rgb_slider name="blue" value={@rgb.blue} />
-      </form>
+        <form id="color-swatch" action="#" phx-change="change-color">
+          <.rgb_slider name="red" value={@rgb.red} />
+          <.rgb_slider name="green" value={@rgb.green} />
+          <.rgb_slider name="blue" value={@rgb.blue} />
+        </form>
       </div>
     </div>
   </section>

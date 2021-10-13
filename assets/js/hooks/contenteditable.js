@@ -5,6 +5,7 @@ let Contenteditable = {
     this.wasText = this.code.innerText;
 
     this.el.addEventListener("click", () => {
+      this.code.spellcheck = false;
       this.code.setAttribute("contenteditable", "true");
       this.code.addEventListener("blur", this.onBlur);
       this.code.focus();
