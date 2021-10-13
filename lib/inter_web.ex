@@ -94,9 +94,9 @@ defmodule InterWeb do
 
       import PhoenixWeb.Profiler, only: [dump: 1]
 
-      import InterWeb.Inspector.HTML
       import InterWeb.ErrorHelpers
       import InterWeb.Gettext
+      import InterWeb.Components
       alias InterWeb.Router.Helpers, as: Routes
     end
   end

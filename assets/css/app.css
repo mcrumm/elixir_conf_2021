@@ -1,16 +1,32 @@
 /* This file is for your main application CSS */
 @import "./phoenix.css";
 
+:root {
+  --font-mono: "JetBrains Mono", Consolas, Menlo, Monaco, "Liberation Mono", monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: var(--font-sans);
   font-size: 16px;
   overflow-wrap: break-word;
 }
 
+pre,
+code,
+kbd {
+  font-family: var(--font-mono);
+  font-weight: 400;
+}
+
 code {
-  font-family: "JetBrains Mono", Consolas, Menlo, Monaco, "Liberation Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 13px;
   font-weight: 400;
+}
+
+p>code {
+  white-space: normal;
 }
 
 h1 code,
@@ -19,15 +35,23 @@ h3 code {
   font-size: inherit;
 }
 
+h1.lead-in {
+  font-weight: 700;
+}
+
 main {
   text-align: center;
 }
+
+/* Page Navigation */
 
 header nav ol,
 header nav ul {
   margin: 0;
   padding-left: 0;
   list-style: none;
+  font-size: 14px;
+  line-height: 3.8;
 }
 
 header nav li {
@@ -47,6 +71,48 @@ header nav li+li::before {
   content: '';
 }
 
+nav.subnav>ol {
+  list-style: lower-alpha inside;
+}
+
+.next-prev {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: 1.5rem 0;
+}
+
+.next-prev.next {
+  justify-content: flex-end;
+}
+
+.next-prev.prev {
+  justify-content: flex-start;
+}
+
+.next-prev>.next {
+  order: 2;
+}
+
+.next-prev>.next::before {
+  content: "Next: ";
+}
+
+.next-prev>.prev {
+  order: 1;
+}
+
+.next-prev>.prev::before {
+  content: "Previous: ";
+}
+
+.next-prev:has(:only-child) {
+  justify-content: flex-end;
+}
+
+/* Code inspector (View Source) */
+
 pre {
   text-align: left;
   border: 0 none;
@@ -61,6 +127,11 @@ pre>code {
   margin: 0;
 }
 
+details:focus,
+summary:focus {
+  outline: none;
+}
+
 details>summary {
   cursor: pointer;
 }
@@ -71,6 +142,18 @@ details:not([open])>summary::after {
 
 details[open]>summary::after {
   content: " (click to hide)"
+}
+
+section.row.inspector {
+  text-align: left;
+}
+
+/* Color block */
+
+#color-block,
+.color-block {
+  width: 120px;
+  height: 120px;
 }
 
 /* Alerts and form errors used by phx.new */

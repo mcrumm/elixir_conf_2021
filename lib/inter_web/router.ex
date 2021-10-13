@@ -22,8 +22,16 @@ defmodule InterWeb.Router do
     live "/inside", InsideLive, :index
     live "/inside/mount", InsideLive.Mount, :index
     live "/inside/navigation", InsideLive.Navigation, :index
+    live "/inside/navigation/patch", InsideLive.NavigationPatch, :index
+    live "/inside/navigation/patch/color/:name", InsideLive.NavigationPatch, :color
+    live "/inside/navigation/redirect", InsideLive.NavigationRedirect, :index
+    live "/inside/navigation/redirect/color/ex", InsideLive.NavigationRedirect, :color_ex
+    live "/inside/navigation/redirect/color/phx", InsideLive.NavigationRedirect, :color_phx
     live "/inside/events", InsideLive.Events, :index
+    live "/inside/events/color/:red/:green/:blue", InsideLive.Events, :color
     live "/inside/messages", InsideLive.Messages, :index
+    live "/inside/sessions", InsideLive.LiveSessions, :index
+    live "/inside/lifecycle-hooks", InsideLive.LifecycleHooks, :index
   end
 
   # Other scopes may use custom stacks.

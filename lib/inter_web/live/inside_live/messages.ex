@@ -3,4 +3,32 @@ defmodule InterWeb.InsideLive.Messages do
   The fourth vignette covers the handle_info callback.
   """
   use InterWeb, :live_view
+
+  @impl Phoenix.LiveView
+  def mount(_params, _session, socket) do
+    {:ok, pid} =
+      if connected?(socket) do
+        Agent.start_link(fn -> :ok end)
+      else
+        {:ok, nil}
+      end
+
+    {:ok, assign(socket, :agent, pid)}
+  end
+
+  @impl Phoenix.LiveView
+  def handle_info({__MODULE__, msg}, socket) do
+    dump(msg)
+    {:noreply, socket}
+  end
+
+  @impl Phoenix.LiveView
+  def handle_event("sned", %{"chat" => %{"msg" => msg}}, socket) do
+    :ok =
+      Agent.update(socket.assigns.agent, fn _ ->
+        Process.send_after(self(), {__MODULE__, msg}, 1_000)
+      end)
+
+    {:noreply, socket}
+  end
 end

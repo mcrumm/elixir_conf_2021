@@ -1,0 +1,43 @@
+<h1>2. Inside Navigation</h1>
+<nav class="subnav">
+  <ol>
+    <li><%= live_redirect "Patch Example", to: Routes.inside_navigation_patch_path(InterWeb.Endpoint, :index) %></li>
+    <li><%= live_redirect "Redirect Example", to: Routes.inside_navigation_redirect_path(InterWeb.Endpoint, :index) %></li>
+  </ol>
+</nav>
+
+<h2>2a. Patch</h2>
+<h3>Lifecycle: <code>handle_params &vert;&gt; render</code></h3>
+
+<section class="row">
+  <section class="column">
+    <dl>
+      <dt>Client</dt><dd><a href="https://hexdocs.pm/phoenix_live_view/Phoenix.LiveViewHelpers.html#live_patch/2"><kbd>LiveView.Helpers.live_patch(@socket, to: "/foo")</kbd></a></dd>
+      <dt>Server</dt><dd><a href="https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#push_patch/2"><kbd>LiveView.push_patch(socket, to: "/bar")</kbd></a></dd>
+    </dl>
+  </section>
+  <section class="column">
+    <div class="row">
+      <div class="column">
+        <ul>
+          <li>Choose a color:</li>
+          <li><%= live_patch "Red", to: Routes.inside_navigation_patch_path(InterWeb.Endpoint, :color, "red") %></li>
+          <li><%= live_patch "Green", to: Routes.inside_navigation_patch_path(InterWeb.Endpoint, :color, "green") %></li>
+          <li><%= live_patch "Blue", to: Routes.inside_navigation_patch_path(InterWeb.Endpoint, :color, "blue") %></li>
+        </ul>
+      </div>
+      <div class="column"><div class="color-block" style={"width:120px;height:120px;background-color:#{@color};"}></div></div>
+    </div>
+  </section>
+</section>
+
+<section class="next-prev">
+  <%= live_redirect "2b. Redirect", class: "next", to: Routes.inside_navigation_redirect_path(InterWeb.Endpoint, :index) %>
+  <%= live_redirect "2. Navigation", class: "prev", to: Routes.inside_navigation_path(InterWeb.Endpoint, :index) %>
+</section>
+
+<section class="row inspector">
+  <section class="column">
+    <.code_inspector file={@file} />
+  </section>
+</section>

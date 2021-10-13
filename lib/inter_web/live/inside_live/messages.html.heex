@@ -1,12 +1,24 @@
-<section class="row">
-  <section class="column">
-    <h1>4. Inside Messages</h1>
-  </section>
-</section>
+<h1>4. Inside Messages</h1>
+<h2>Lifecycle: <code>handle_info &vert;&gt; render</code></h2>
 
 <section class="row">
   <section class="column">
-    <h2>Lifecycle: <code>handle_info &vert;&gt; render</code></h2>
+  <h3>Echo Example</h3>
+  <p>Send a message through an Agent and it will be echoed back to you.</p>
+  <.form for={:chat} let={f} phx-submit="send" autocomplete="off">
+    <%= text_input(f, :msg) %>
+    <%= submit "Send" %>
+  </.form>
+  </section>
+</section>
+
+<section class="next-prev">
+  <%= live_redirect "5. Live Sessions", class: "next", to: Routes.inside_live_sessions_path(InterWeb.Endpoint, :index) %>
+  <%= live_redirect "3. Events", class: "prev", to: Routes.inside_events_path(InterWeb.Endpoint, :index) %>
+</section>
+
+<section class="row inspector">
+  <section class="column">
     <.code_inspector file={@file} />
   </section>
 </section>

@@ -1,4 +1,7 @@
-defmodule InterWeb.Inspector.HTML do
+defmodule InterWeb.Components.Inspector do
+  @moduledoc """
+  Naive source code loader.
+  """
   use Phoenix.Component
   use Phoenix.HTML
   import PhoenixWeb.Profiler, only: [dump: 1], warn: false
@@ -16,6 +19,7 @@ defmodule InterWeb.Inspector.HTML do
     # somewhere– I was in a hurry. please forgive me (-:
     assigns =
       assigns
+      |> Map.put_new(:open, false)
       |> Map.put(:stylesheet, Makeup.stylesheet(StyleMap.monokai_style()))
       |> Map.update!(:file, fn file ->
         file |> File.read!() |> Makeup.highlight()
@@ -23,7 +27,7 @@ defmodule InterWeb.Inspector.HTML do
 
     ~H"""
     <style type="text/css"><%= raw(@stylesheet) %></style>
-    <details><summary>View Source</summary>
+    <details open={@open}><summary>View Source</summary>
     <%= raw(@file) %>
     </details>
     """

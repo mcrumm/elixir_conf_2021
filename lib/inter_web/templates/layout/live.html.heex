@@ -2,13 +2,13 @@
   <section class="container">
     <nav aria-label="Breadcrumb" class="breadcrumb">
       <ol>
-        <li><%= live_redirect"The LiveView Lifecycle", to: Routes.page_path(InterWeb.Endpoint, :index) %></li>
-        <li><%= live_redirect"Mount", to: Routes.inside_mount_path(InterWeb.Endpoint, :index) %></li>
-        <li><%= live_redirect"Navigation", to: Routes.inside_navigation_path(InterWeb.Endpoint, :index) %></li>
-        <li><%= live_redirect"Events", to: Routes.inside_events_path(InterWeb.Endpoint, :index) %></li>
-        <li><%= live_redirect"Messages", to: Routes.inside_messages_path(InterWeb.Endpoint, :index) %></li>
-        <li><a href="/">Sessions</a></li>
-        <li><a href="/">Hooks</a></li>
+        <li><%= live_redirect "The LiveView Lifecycle", to: Routes.page_path(InterWeb.Endpoint, :index) %></li>
+        <li><%= live_redirect "1. Mount", to: Routes.inside_mount_path(InterWeb.Endpoint, :index) %></li>
+        <li><%= live_redirect "2. Navigation", to: Routes.inside_navigation_path(InterWeb.Endpoint, :index) %></li>
+        <li><%= live_redirect "3. Events", to: Routes.inside_events_path(InterWeb.Endpoint, :index) %></li>
+        <li><%= live_redirect "4. Messages", to: Routes.inside_messages_path(InterWeb.Endpoint, :index) %></li>
+        <li><%= live_redirect "5. Sessions", to: Routes.inside_live_sessions_path(InterWeb.Endpoint, :index) %></li>
+        <li><%= live_redirect "6. Hooks", to: Routes.inside_lifecycle_hooks_path(InterWeb.Endpoint, :index) %></li>
       </ol>
     </nav>
   </section>

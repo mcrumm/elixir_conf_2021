@@ -8,7 +8,7 @@ defmodule InterWeb.InsideLive.Mount do
   def mount(_params, _session, socket) do
     socket =
       socket
-      |> assign_new(:ua, fn ->
+      |> assign_new(:useragent, fn ->
         get_connect_info(socket)[:user_agent]
       end)
       |> assign_new(:lang, fn ->

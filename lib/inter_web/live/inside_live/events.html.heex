@@ -1,12 +1,30 @@
-<section class="row">
-  <section class="column">
-    <h1>3. Inside Events</h1>
-  </section>
-</section>
+<h1>3. Inside Events</h1>
+<h2>Lifecycle: <code>handle_event &vert;&gt; render</code></h2>
 
 <section class="row">
   <section class="column">
-    <h2>Lifecycle: <code>handle_event &vert;&gt; render</code></h2>
+    <section class="row">
+      <div class="column">
+        <form id="color-swatch" action="#" phx-change="change-color">
+          <.rgb_slider name="red" value={@rgb.red} />
+          <.rgb_slider name="green" value={@rgb.green} />
+          <.rgb_slider name="blue" value={@rgb.blue} />
+        </form>
+      </div>
+      <div class="column">
+        <div id="color-block" style={"background-color:rgb(#{@rgb.red}, #{@rgb.green}, #{@rgb.blue});"}></div>
+      </div>
+    </section>
+  </section>
+</section>
+
+<section class="next-prev">
+  <%= live_redirect "4. Messages", class: "next", to: Routes.inside_messages_path(InterWeb.Endpoint, :index) %>
+  <%= live_redirect "2b. Redirects", class: "prev", to: Routes.inside_navigation_redirect_path(InterWeb.Endpoint, :index) %>
+</section>
+
+<section class="row inspector">
+  <section class="column">
     <.code_inspector file={@file} />
   </section>
 </section>

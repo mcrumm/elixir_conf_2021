@@ -1,29 +1,56 @@
 <h1>2. Inside Navigation</h1>
-<section class="row">
-  <section class="column">
-    <h2>2a. Redirect</h2>
 
-      <dl>
-        <dt>Client</dt><dd><kbd>live_redirect</kbd></dd>
-        <dt>Server</dt><dd><kbd>push_redirect</kbd></dd>
-      </dl>
+<nav class="subnav">
+  <ol>
+    <li><%= live_redirect "Patch Example", to: Routes.inside_navigation_patch_path(InterWeb.Endpoint, :index) %></li>
+    <li><%= live_redirect "Redirect Example", to: Routes.inside_navigation_redirect_path(InterWeb.Endpoint, :index) %></li>
+  </ol>
+</nav>
 
-      <h3>Redirect Lifecycle: <code>mount &vert;&gt; handle_params &vert;&gt; render</code></h3>
-  </section>
-  <section class="column">
+<table>
+  <thead><tr>
+    <th>I want to...</th>
+    <th>...from within...</th>
+    <th>...so I invoke...</th>
+    <th>...to destination</th>
+  </tr></thead>
+  <tbody>
+    <tr>
+      <td>patch</td>
+      <td>(L|H)eex</td>
+      <td><kbd>LiveView.Helpers.live_patch(@socket, to: path)</kbd></td>
+      <td>same LiveView process</td>
+    </tr>
+    <tr>
+      <td>redirect</td>
+      <td>(L|H)eex</td>
+      <td><kbd>LiveView.Helpers.live_redirect(@socket, to: path)</kbd></td>
+      <td>any LiveView within the same <code>live_session</code><sup>*</sup></td>
+    </tr>
+    <tr>
+      <td scope="row">patch</td>
+      <td>LiveView</td>
+      <td><kbd>LiveView.push_patch(socket, to: path)</kbd></td>
+      <td>same LiveView process</td>
+    </tr>
+    <tr>
+      <td>redirect</td>
+      <td>LiveView</td>
+      <td><kbd>LiveView.push_redirect(socket, to: path)</kbd></td>
+      <td>any LiveView within the same <code>live_session</code><sup>*</sup></td>
+    </tr>
+  </tbody>
+  <tfoot><tr>
+    <td colspan="4"><sup>*</sup>Live redirects across sessions will fall back to full page reloads.</td>
+  </tr></tfoot>
+</table>
 
-    <h2>2b. Patch</h2>
-
-      <dl>
-        <dt>Client</dt><dd><kbd>live_patch</kbd></dd>
-        <dt>Server</dt><dd><kbd>push_patch</kbd></dd>
-      </dl>
-
-      <h3>Patch Lifecycle: <code>handle_params &vert;&gt; render</code></h3>
-    </section>
+<section class="next-prev">
+  <%= live_redirect "2a. Patch", class: "next", to: Routes.inside_navigation_patch_path(InterWeb.Endpoint, :index) %>
+  <%= link "1. Mount", class: "prev", to: Routes.inside_mount_path(InterWeb.Endpoint, :index) %>
 </section>
 
-<section class="row">
+<section class="row inspector">
   <section class="column">
     <.code_inspector file={@file} />
   </section>
