@@ -50,7 +50,7 @@ defmodule InterWeb do
 
       use PhoenixWeb.LiveProfiler
 
-      on_mount {InterWeb, __ENV__}
+      on_mount({InterWeb.LiveRecompiler, __ENV__})
 
       unquote(view_helpers())
     end
@@ -106,9 +106,5 @@ defmodule InterWeb do
   """
   defmacro __using__(which) when is_atom(which) do
     apply(__MODULE__, which, [])
-  end
-
-  def on_mount(%{file: file}, _, _, socket) do
-    {:cont, Phoenix.LiveView.assign(socket, :file, file)}
   end
 end

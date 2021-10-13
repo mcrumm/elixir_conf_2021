@@ -4,6 +4,8 @@ defmodule InterWeb.Components do
   """
   use Phoenix.Component
 
+  defdelegate code_editor(assigns), to: InterWeb.Components.Inspector
+
   defdelegate code_inspector(assigns), to: InterWeb.Components.Inspector
 
   @doc """

@@ -3,7 +3,7 @@
 <p>Each <strong>LiveView</strong> session begins with a stateless HTTP request. You may have heard this affectionately referred to as a <em>dead</em> render. From these humble beginnings, statefulness will emerge.</p>
 <section class="row">
   <section class="column">
-    <p>We can gather <strong>connect info</strong> from the request. For example, <em>your browser's <a title={"Learn more about why browser detection\nby user agent is a bad idea"} href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent#considerations_before_using_browser_detection">user agent</a> is</em>
+    <p>Something that is unique to <code>mount/3</code>: we can gather <strong>connect info</strong> from the request. For example, <em>your browser's <a title={"Learn more about why browser detection\nby user agent is a bad idea"} href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent#considerations_before_using_browser_detection">user agent</a> is</em>
     <code><%= inspect(@useragent) %></code> and your <em>browser's language is</em><code><%= inspect(@lang) %></code>.</p>
   </section>
 </section>
@@ -15,6 +15,6 @@
 
 <section class="row inspector">
   <section class="column">
-    <.code_inspector file={@file} />
+    <.code_editor id="mount-inspector" contents={@contents} />
   </section>
 </section>

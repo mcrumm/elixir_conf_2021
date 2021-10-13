@@ -148,6 +148,12 @@ section.row.inspector {
   text-align: left;
 }
 
+[contenteditable="true"]:active,
+[contenteditable="true"]:focus {
+  border: none;
+  outline: none;
+}
+
 /* Color block */
 
 #color-block,

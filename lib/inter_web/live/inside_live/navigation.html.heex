@@ -47,11 +47,11 @@
 
 <section class="next-prev">
   <%= live_redirect "2a. Patch", class: "next", to: Routes.inside_navigation_patch_path(InterWeb.Endpoint, :index) %>
-  <%= link "1. Mount", class: "prev", to: Routes.inside_mount_path(InterWeb.Endpoint, :index) %>
+  <%= live_redirect "1. Mount", class: "prev", to: Routes.inside_mount_path(InterWeb.Endpoint, :index) %>
 </section>
 
 <section class="row inspector">
   <section class="column">
-    <.code_inspector file={@file} />
+    <.code_editor id="navigation-inspector" contents={@contents} />
   </section>
 </section>

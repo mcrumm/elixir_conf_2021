@@ -4,31 +4,44 @@ defmodule InterWeb.Components.Inspector do
   """
   use Phoenix.Component
   use Phoenix.HTML
-  import PhoenixWeb.Profiler, only: [dump: 1], warn: false
 
   require Makeup.Styles.HTML.StyleMap
   alias Makeup.Styles.HTML.StyleMap
+
+  @stylesheet "<style type=\"text/css\">" <>
+                Makeup.stylesheet(StyleMap.monokai_style()) <> "</style>"
 
   @doc """
   Rends a component to introspect the current module.
   """
   def code_inspector(assigns) do
-    # Note: this is a terrible thing to do at runtime.
-    # If you wanted to do something like this for real,
-    # read the files at compile-time and save the content
-    # somewhere– I was in a hurry. please forgive me (-:
     assigns =
       assigns
-      |> Map.put_new(:open, false)
-      |> Map.put(:stylesheet, Makeup.stylesheet(StyleMap.monokai_style()))
-      |> Map.update!(:file, fn file ->
-        file |> File.read!() |> Makeup.highlight()
-      end)
+      |> Map.put_new(:summary, "View Source")
+      |> Map.put(:stylesheet, @stylesheet)
+      |> update(:contents, &(&1 |> Makeup.highlight() |> raw()))
 
     ~H"""
-    <style type="text/css"><%= raw(@stylesheet) %></style>
-    <details open={@open}><summary>View Source</summary>
-    <%= raw(@file) %>
+    <%= raw(@stylesheet) %>
+    <details><summary><%= @summary %></summary>
+    <div><%= @contents %></div>
+    </details>
+    """
+  end
+
+  @doc """
+  Rends a component to introspect the current module.
+  """
+  def code_editor(assigns) do
+    assigns =
+      assigns
+      |> Map.put(:stylesheet, @stylesheet)
+      |> update(:contents, &(&1 |> Makeup.highlight() |> raw()))
+
+    ~H"""
+    <%= raw(@stylesheet) %>
+    <details><summary>View Source</summary>
+    <div id={@id} phx-hook="Contenteditable"><%= @contents %></div>
     </details>
     """
   end

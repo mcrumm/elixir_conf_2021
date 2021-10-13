@@ -9,10 +9,10 @@ defmodule InterWeb.InsideLive.Mount do
     socket =
       socket
       |> assign_new(:useragent, fn ->
-        get_connect_info(socket)[:user_agent]
+        get_connect_info(socket)[:useragent]
       end)
       |> assign_new(:lang, fn ->
-        get_connect_params(socket)["language"]
+        get_connect_params(socket)["lang"]
       end)
 
     {:ok, socket}

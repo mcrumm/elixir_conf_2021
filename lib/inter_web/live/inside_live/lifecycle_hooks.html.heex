@@ -1,6 +1,19 @@
 <h1>6. Inside Lifecycle Hooks</h1>
 
+<h2>Example: LiveRecompiler</h2>
+<section class="row">
+  <section class="column">
+    <.code_inspector contents={@live_recompiler} summary="live_recompiler.ex" />
+  </section>
+  <section class="column">
+    <.code_inspector contents={@content_editable} summary="contenteditable.js" />
+  </section>
+</section>
+
+<h2>Example: Navigation Current Page</h2>
+TODO
+
 <section class="next-prev">
   <%= live_redirect "1. Mount", class: "next", to: Routes.inside_mount_path(InterWeb.Endpoint, :index) %>
-  <%= link "5. Live Sessions", class: "prev", to: Routes.inside_live_sessions_path(InterWeb.Endpoint, :index) %>
+  <%= live_redirect "5. Live Sessions", class: "prev", to: Routes.inside_live_sessions_path(InterWeb.Endpoint, :index) %>
 </section>
