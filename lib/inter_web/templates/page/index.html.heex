@@ -1,4 +1,2 @@
 <h1 class="lead-in"><%= gettext "Welcome to %{name}!", name: "the Internet" %></h1>
-<section class="next-prev next">
-  <%= link "Have a look around", class: "next", to: Routes.inside_path(InterWeb.Endpoint, :index) %>
-</section>
+<%= link "Have a look around.", to: Routes.inside_path(InterWeb.Endpoint, :index) %>

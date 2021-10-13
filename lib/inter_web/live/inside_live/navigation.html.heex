@@ -1,76 +1,74 @@
-<h1>2. Inside Navigation</h1>
-
 <section class="row">
   <section class="column">
     <div id="color-tube" style={"background-color:#{@color};"}>
-      <code><%= @changes %></code>
+      <div class="slide">
+        <h1>2. Inside Navigation</h1>
+        <p>A live patch will increment the change counter. A redirect will reset the counter to 1.</p>
+      </div>
+      <code class="counter"><%= @changes %></code>
+      <div class="controls">
+        <ul>
+          <li>Patch in a color:</li>
+          <li><%= live_patch "Red", replace: true, to: Routes.inside_navigation_path(InterWeb.Endpoint, :color, "red") %></li>
+          <li><%= live_patch "Green", replace: true, to: Routes.inside_navigation_path(InterWeb.Endpoint, :color, "green") %></li>
+          <li><%= live_patch "Blue", replace: true, to: Routes.inside_navigation_path(InterWeb.Endpoint, :color, "blue") %></li>
+        </ul>
+        <ul>
+          <li>Redirect to a color:</li>
+          <li><%= live_redirect "Red", replace: true, to: Routes.inside_navigation_path(InterWeb.Endpoint, :color, "red") %></li>
+          <li><%= live_redirect "Green", replace: true, to: Routes.inside_navigation_path(InterWeb.Endpoint, :color, "green") %></li>
+          <li><%= live_redirect "Blue", replace: true, to: Routes.inside_navigation_path(InterWeb.Endpoint, :color, "blue") %></li>
+        </ul>
+      </div>
     </div>
   </section>
 </section>
-
-<section class="row">
-  <section class="column">
-    <ul>
-      <li>Patch in a color:</li>
-      <li><%= live_patch "Red", to: Routes.inside_navigation_path(InterWeb.Endpoint, :color, "red") %></li>
-      <li><%= live_patch "Green", to: Routes.inside_navigation_path(InterWeb.Endpoint, :color, "green") %></li>
-      <li><%= live_patch "Blue", to: Routes.inside_navigation_path(InterWeb.Endpoint, :color, "blue") %></li>
-    </ul>
-  </section>
-  <section class="column">
-    <ul>
-      <li>Redirect to a color:</li>
-      <li><%= live_redirect "Red", to: Routes.inside_navigation_path(InterWeb.Endpoint, :color, "red") %></li>
-      <li><%= live_redirect "Green", to: Routes.inside_navigation_path(InterWeb.Endpoint, :color, "green") %></li>
-      <li><%= live_redirect "Blue", to: Routes.inside_navigation_path(InterWeb.Endpoint, :color, "blue") %></li>
-    </ul>
-  </section>
-</section>
-
-<table>
-  <thead><tr>
-    <th>I want to...</th>
-    <th>...when I link to...</th>
-    <th>...from within...</th>
-    <th>...so I invoke</th>
-  </tr></thead>
-  <tbody>
-    <tr>
-      <td>keep state</td>
-      <td>same LiveView process</td>
-      <td>(L|H)eex</td>
-      <td><kbd>live_patch(@socket, to: path)</kbd></td>
-
-    </tr>
-    <tr>
-      <td>drop state</td>
-      <td>any LiveView within the same <code>live_session</code><sup>*</sup></td>
-      <td>(L|H)eex</td>
-      <td><kbd>live_redirect(@socket, to: path)</kbd></td>
-
-    </tr>
-    <tr>
-      <td>keep state</td>
-      <td>same LiveView process</td>
-      <td>LiveView</td>
-      <td><kbd>push_patch(socket, to: path)</kbd></td>
-    </tr>
-    <tr>
-      <td>drop state</td>
-      <td>any LiveView within the same <code>live_session</code><sup>*</sup></td>
-      <td>LiveView</td>
-      <td><kbd>push_redirect(socket, to: path)</kbd></td>
-    </tr>
-  </tbody>
-  <tfoot><tr>
-    <td colspan="4"><sup>*</sup>Live redirects across sessions will fall back to full page reloads.</td>
-  </tr></tfoot>
-</table>
 
 <section class="next-prev">
   <%= live_redirect "3. Events", class: "next", to: Routes.inside_events_path(InterWeb.Endpoint, :index) %>
   <%= live_redirect "1. Mount", class: "prev", to: Routes.inside_mount_path(InterWeb.Endpoint, :index) %>
 </section>
+
+<table>
+  <thead>
+    <tr><th colspan="4" align="center">Live Navigation Reference</th></tr>
+    <tr>
+      <th>I want to...</th>
+      <th>...when I navigate to...</th>
+      <th>...from within...</th>
+      <th>...so I invoke</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>keep state</td>
+      <td><kbd>self()</kbd></td>
+      <td><kbd>.(l|h)eex</kbd></td>
+      <td><kbd><a href="https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.Helpers.html#live_patch/2">live_patch(@socket, to: path)</a></kbd></td>
+    </tr>
+    <tr>
+      <td>drop state</td>
+      <td>any <kbd>live</kbd> route within the same <kbd>live_session</kbd><sup>*</sup></td>
+      <td><kbd>.(l|h)eex</kbd></td>
+      <td><kbd><a href="https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.Helpers.html#live_redirect/2">live_redirect(@socket, to: path)</a></kbd></td>
+    </tr>
+    <tr>
+      <td>keep state</td>
+      <td><kbd>self()</kbd></td>
+      <td><kbd>.ex</kbd></td>
+      <td><kbd><a href="https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#push_patch/2">push_patch(socket, to: path)</a></kbd></td>
+    </tr>
+    <tr>
+      <td>drop state</td>
+      <td>any <code>live</code> route within the same <kbd>live_session</kbd><sup>*</sup></td>
+      <td><kbd>.ex</kbd></td>
+      <td><kbd><a href="https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#push_redirect/2">push_redirect(socket, to: path)</a></kbd></td>
+    </tr>
+  </tbody>
+  <tfoot><tr>
+    <td colspan="4"><sup>*</sup>Live redirects across the <kbd>live_session</kbd> boundary will fall back to full page reloads.</td>
+  </tr></tfoot>
+</table>
 
 <section class="row inspector">
   <section class="column">

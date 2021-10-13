@@ -3,15 +3,11 @@ defmodule InterWeb.InsideLive.Events do
   The third vignette covers the handle_event callback.
   """
   use InterWeb, :live_view
-  alias Inter.RGB
   alias InterWeb.Colors
 
   @impl Phoenix.LiveView
   def mount(params, _session, socket) when params == %{} do
-    {:ok,
-     push_redirect(socket,
-       to: Colors.color_path(socket, RGB.random())
-     )}
+    {:ok, assign(socket, changes: 0, rgb: Colors.color(:elixir))}
   end
 
   @impl Phoenix.LiveView
@@ -24,7 +20,7 @@ defmodule InterWeb.InsideLive.Events do
     {:noreply,
      push_patch(socket,
        replace: true,
-       to: Colors.color_path(socket, RGB.new(params))
+       to: Colors.color_path(socket, Colors.new(params))
      )}
   end
 
@@ -36,7 +32,7 @@ defmodule InterWeb.InsideLive.Events do
   defp apply_action(socket, :color, params) do
     {:noreply,
      socket
-     |> assign(:rgb, RGB.new(params))
+     |> assign(:rgb, Colors.new(params))
      |> update(:changes, &(&1 + 1))}
   end
 

@@ -19,14 +19,21 @@ defmodule InterWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
     live "/inside", InsideLive, :index
+
     live "/inside/mount", InsideLive.Mount, :index
+
     live "/inside/navigation", InsideLive.Navigation, :index
-    live "/inside/navigation/color/:name", InsideLive.Navigation, :color
+    live "/inside/navigation/color/:colour", InsideLive.Navigation, :color
+
     live "/inside/events", InsideLive.Events, :index
     live "/inside/events/color/:red/:green/:blue", InsideLive.Events, :color
+
     live "/inside/messages", InsideLive.Messages, :index
+
     live "/inside/sessions", InsideLive.LiveSessions, :index
+
     live "/inside/lifecycle-hooks", InsideLive.LifecycleHooks, :index
   end
 

@@ -5,11 +5,11 @@ defmodule InterWeb.Colors do
   alias Inter.RGB
   alias InterWeb.Router.Helpers, as: Routes
 
-  @type builtin_color :: :ex | :phx
+  @type builtin_color :: :elixir | :phoenix
 
   @colors %{
-    ex: {75, 68, 115},
-    phx: {242, 110, 64}
+    elixir: {75, 68, 115},
+    phoenix: {242, 110, 64}
   }
 
   @doc """
@@ -28,5 +28,32 @@ defmodule InterWeb.Colors do
 
   def color_path(socket, %RGB{red: r, green: g, blue: b}) do
     Routes.inside_events_path(socket, :color, r, g, b)
+  end
+
+  @doc """
+  Returns a color struct for the given `params`.
+  """
+  defdelegate new(params), to: RGB
+
+  @doc """
+  Returns the rgb string for a given `color`.
+  """
+  def rgb(%RGB{red: r, green: g, blue: b}) do
+    "rgb(#{r},#{g},#{b})"
+  end
+
+  @doc """
+  Returns the color darkened by a given `amount`.
+  """
+  def darken(%RGB{} = color, amount)
+      when is_integer(amount) and amount >= 0 and amount <= 255 do
+    attrs =
+      for {k, v} <- Map.from_struct(color),
+          v >= amount,
+          v <= 255,
+          into: %{},
+          do: {k, v - amount}
+
+    RGB.new(attrs)
   end
 end

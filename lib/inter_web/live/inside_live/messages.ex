@@ -13,7 +13,7 @@ defmodule InterWeb.InsideLive.Messages do
         {:ok, nil}
       end
 
-    {:ok, assign(socket, :agent, pid)}
+    {:ok, assign(socket, agent: pid)}
   end
 
   @impl Phoenix.LiveView

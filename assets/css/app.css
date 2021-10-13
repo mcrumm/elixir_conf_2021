@@ -13,7 +13,11 @@ body {
 }
 
 .container {
-  max-width: 960px;
+  max-width: 1000px;
+}
+
+.row.mb {
+  margin-bottom: 1em;
 }
 
 pre,
@@ -49,29 +53,8 @@ main {
 
 /* Page Navigation */
 
-header nav ol,
-header nav ul {
-  margin: 0;
-  padding-left: 0;
-  list-style: none;
-  line-height: 3.8;
-}
-
 header nav li {
-  display: inline;
-}
-
-header nav a {
-  display: inline;
-}
-
-header nav li+li::before {
-  display: inline-block;
-  margin: 0 1em;
-  transform: rotate(15deg);
-  border-right: 0.1em solid currentColor;
-  height: 0.8em;
-  content: '';
+  text-align: left;
 }
 
 nav.subnav>ol {
@@ -159,65 +142,147 @@ section.row.inspector {
 
 /* Color block */
 
-#color-block,
-.color-block {
-  width: 120px;
-  height: 120px;
-}
-
 #color-tube {
-  height: 540px;
+  height: auto;
   aspect-ratio: 16 / 9;
   padding: 0;
   margin: 0 auto;
+  background-color: rgb(212, 80, 34);
+  color: white;
+  overflow-y: auto;
   display: flex;
-  background-color: rgb(242, 110, 64);
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-#color-tube>code {
-  margin: 0 auto;
-  font-size: 11em;
-  color: white;
-  background: transparent;
-  align-self: center;
-  line-height: 100%;
-}
-
-#color-tube>form {
-  background-color: lavender;
-  max-width: 50%;
-  height: 100%;
-  padding: 1em;
-}
-
-#color-tube>.slide {
-  display: block;
-  background-color: inherit;
-  padding: 4em;
-}
-
-#color-tube>.slide p {
-  font-size: 32px;
-  line-height: 38px;
-}
-
-#color-tube>.slide p>code {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#color-tube p {
-  color: white;
-  font-size: 20px;
-}
-
-#color-tube p>code {
-  color: rgb(20, 20, 20);
+#color-tube.ex {
+  background-color: rgb(75, 68, 115);
 }
 
 #color-tube a {
   color: white;
   text-decoration: underline;
+}
+
+#color-tube code {
+  color: rgb(20, 20, 20);
+}
+
+#color-tube code.counter {
+  margin: 0 auto;
+  color: white;
+  background: transparent;
+  align-self: center;
+  line-height: 100%;
+  font-size: 4em;
+}
+
+#color-tube label {
+  color: rgb(20, 20, 20);
+}
+
+#color-tube form {
+  background-color: lavender;
+  height: auto;
+  padding: 1em;
+  margin: 0;
+  height: auto;
+}
+
+#color-tube>form input {
+  max-width: 100%;
+}
+
+#color-tube form input[type=text] {
+  background-color: white;
+  margin-right: 1em;
+}
+
+#color-tube>.slide h1 {
+  text-align: left;
+}
+
+#color-tube>.slide {
+  display: block;
+  background-color: inherit;
+  padding: 1em;
+}
+
+#color-tube>.controls {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: auto;
+}
+
+#color-tube>.controls form {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#color-tube>.controls ol,
+#color-tube>.controls ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+#color-tube>.controls li {
+  display: inline;
+}
+
+/* Responsive design */
+
+@media (min-width: 48.0rem) {
+  /* 768px and up */
+
+  header nav ol,
+  header nav ul {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+    line-height: 3.8;
+  }
+
+  header nav li {
+    display: inline;
+  }
+
+  header nav a {
+    display: inline;
+  }
+
+  header nav li+li::before {
+    display: inline-block;
+    margin: 0 1em;
+    transform: rotate(15deg);
+    border-right: 0.1em solid currentColor;
+    height: 0.8em;
+    content: '';
+  }
+
+  #color-tube {
+    max-height: 540px;
+  }
+
+  #color-tube p {
+    font-size: 20px;
+  }
+
+  #color-tube>.slide p {
+    font-size: 32px;
+    line-height: 38px;
+    padding: 0 1em;
+  }
+
+  #color-tube>.slide p>code {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  #color-tube code.counter {
+    font-size: 11em;
+  }
 }
 
 /* Alerts and form errors used by phx.new */

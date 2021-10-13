@@ -1,22 +1,19 @@
-<h1>3. Inside Events</h1>
-<h2>Lifecycle: <code>handle_event &vert;&gt; render</code></h2>
-
 <section class="row">
   <section class="column">
     <div id="color-tube" style={"background-color:rgb(#{@rgb.red}, #{@rgb.green}, #{@rgb.blue});"}>
+      <div class="slide">
+        <h1>3. Inside Events</h1>
+        <p>Enabling reactive interfaces with phx-click, phx-change, etc.</p>
+      </div>
+      <code class="counter"><%= @changes %></code>
+      <div class="controls">
       <form id="color-swatch" action="#" phx-change="change-color">
         <.rgb_slider name="red" value={@rgb.red} />
         <.rgb_slider name="green" value={@rgb.green} />
         <.rgb_slider name="blue" value={@rgb.blue} />
       </form>
-      <code><%= @changes %></code>
+      </div>
     </div>
-  </section>
-</section>
-
-<section class="row">
-  <section class="column">
-
   </section>
 </section>
 
