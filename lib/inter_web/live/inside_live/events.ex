@@ -16,7 +16,7 @@ defmodule InterWeb.InsideLive.Events do
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
-    {:ok, socket}
+    {:ok, assign(socket, changes: 0)}
   end
 
   @impl Phoenix.LiveView
@@ -34,7 +34,10 @@ defmodule InterWeb.InsideLive.Events do
   end
 
   defp apply_action(socket, :color, params) do
-    {:noreply, assign(socket, :rgb, RGB.new(params))}
+    {:noreply,
+     socket
+     |> assign(:rgb, RGB.new(params))
+     |> update(:changes, &(&1 + 1))}
   end
 
   defp apply_action(socket, :index, _) do

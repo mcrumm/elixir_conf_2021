@@ -12,6 +12,10 @@ body {
   overflow-wrap: break-word;
 }
 
+.container {
+  max-width: 960px;
+}
+
 pre,
 code,
 kbd {
@@ -50,7 +54,6 @@ header nav ul {
   margin: 0;
   padding-left: 0;
   list-style: none;
-  font-size: 14px;
   line-height: 3.8;
 }
 
@@ -160,6 +163,61 @@ section.row.inspector {
 .color-block {
   width: 120px;
   height: 120px;
+}
+
+#color-tube {
+  height: 540px;
+  aspect-ratio: 16 / 9;
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  background-color: rgb(242, 110, 64);
+}
+
+#color-tube>code {
+  margin: 0 auto;
+  font-size: 11em;
+  color: white;
+  background: transparent;
+  align-self: center;
+  line-height: 100%;
+}
+
+#color-tube>form {
+  background-color: lavender;
+  max-width: 50%;
+  height: 100%;
+  padding: 1em;
+}
+
+#color-tube>.slide {
+  display: block;
+  background-color: inherit;
+  padding: 4em;
+}
+
+#color-tube>.slide p {
+  font-size: 32px;
+  line-height: 38px;
+}
+
+#color-tube>.slide p>code {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#color-tube p {
+  color: white;
+  font-size: 20px;
+}
+
+#color-tube p>code {
+  color: rgb(20, 20, 20);
+}
+
+#color-tube a {
+  color: white;
+  text-decoration: underline;
 }
 
 /* Alerts and form errors used by phx.new */
