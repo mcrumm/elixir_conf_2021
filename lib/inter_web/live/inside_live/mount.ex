@@ -1,8 +1,4 @@
 defmodule InterWeb.InsideLive.Mount do
-  @moduledoc """
-  This is the first vignette. It covers the mount callback in both its
-  disconnected and connected state.
-  """
   use InterWeb, :live_view
 
   @impl Phoenix.LiveView

@@ -40,9 +40,14 @@ defmodule InterWeb.Components.Inspector do
 
     ~H"""
     <%= raw(@stylesheet) %>
-    <details><summary>View Source</summary>
-    <div id={@id} phx-hook="Contenteditable"><%= @contents %></div>
-    </details>
+    <label for="menu-opener" tabindex="0" aria-haspopup="true" role="button"	aria-controls="menu" class="OpenMenuButton" id="openmenu">View Source</label>
+    <input type="checkbox" data-menu id="menu-opener" hidden>
+    <aside class="DrawerMenu" role="menu" id="menu" aria-labelledby="openmenu">
+      <nav class="Menu">
+        <div id={@id} phx-hook="Contenteditable"><%= @contents %></div>
+      </nav>
+      <label for="menu-opener" class="MenuOverlay"></label>
+    </aside>
     """
   end
 end

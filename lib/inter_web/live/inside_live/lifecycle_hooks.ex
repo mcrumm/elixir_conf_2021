@@ -1,7 +1,4 @@
 defmodule InterWeb.InsideLive.LifecycleHooks do
-  @moduledoc """
-  The sixth and final vignette covers the new lifecycle hooks.
-  """
   use InterWeb, :live_view
 
   live_recompiler_path = Path.join([__DIR__, "..", "..", "live_recompiler.ex"])

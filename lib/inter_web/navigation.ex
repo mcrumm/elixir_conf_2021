@@ -4,22 +4,11 @@ defmodule InterWeb.Navigation do
 
   # Plug
   def assign_current_path(conn, _) do
-    Plug.Conn.assign(conn, :current_path, Phoenix.Controller.current_path(conn))
-  end
-
-  # Plug
-  def redirect_if_was_inside(conn, _) do
-    case get_session(conn, "inside") do
-      nil ->
-        conn
-
-      other ->
-        IO.inspect(other, label: "inside session")
-
-        conn
-        |> put_flash_error()
-        |> do_redirect_to_inside_live_sessions()
-    end
+    Plug.Conn.assign(
+      conn,
+      :current_path,
+      Phoenix.Controller.current_path(conn)
+    )
   end
 
   def on_mount(_, _, _, %{private: %{root_view: PhoenixWeb.Profiler.ToolbarLive}} = socket) do
@@ -48,7 +37,18 @@ defmodule InterWeb.Navigation do
     {:cont, socket}
   end
 
-  @flash "Well well, look who's inside again"
+  # Plug
+  def redirect_if_was_inside(conn, _) do
+    case get_session(conn, "inside") do
+      nil ->
+        conn
+
+      _ ->
+        conn |> put_flash_error() |> do_redirect_to_inside_live_sessions()
+    end
+  end
+
+  @flash "🎶 Well well, look who's inside again 🎶"
   defp put_flash_error(conn_or_socket)
 
   defp put_flash_error(%Plug.Conn{} = conn) do

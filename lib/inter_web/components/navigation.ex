@@ -11,8 +11,8 @@ defmodule InterWeb.Components.Navigation do
   def breadcrumbs(assigns) do
     ~H"""
     <nav aria-label="Breadcrumb" class="breadcrumb">
-      <ol><%= for breadcrumb <- @breadcrumb do %>
-      <li><%= link render_slot(breadcrumb), to: breadcrumb.to %></li>
+      <ol><%= for breadcrumb <- @breadcrumb, attrs = breadcrumb_attrs(breadcrumb, @for) do %>
+      <li><%= link render_slot(breadcrumb), attrs %></li>
       <% end %></ol>
     </nav>
     """
@@ -24,10 +24,14 @@ defmodule InterWeb.Components.Navigation do
   def live_breadcrumbs(assigns) do
     ~H"""
     <nav aria-label="Breadcrumb" class="breadcrumb">
-      <ol><%= for breadcrumb <- @breadcrumb do %>
-      <li><%= live_redirect render_slot(breadcrumb), to: breadcrumb.to %></li>
+      <ol><%= for breadcrumb <- @breadcrumb, attrs = breadcrumb_attrs(breadcrumb, @for) do %>
+      <li><%= live_redirect render_slot(breadcrumb), attrs %></li>
       <% end %></ol>
     </nav>
     """
+  end
+
+  defp breadcrumb_attrs(%{to: path}, current_path) do
+    [to: path, aria_current: if(path == current_path, do: "page")]
   end
 end

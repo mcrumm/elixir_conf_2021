@@ -28,7 +28,7 @@ defmodule InterWeb.Router do
     scope "/", InterWeb do
       pipe_through :browser
 
-      get "/", PageController, :index
+      live "/", PageController, :index, as: :page
       live "/inside", InsideLive, :index
       live "/inside/mount", InsideLive.Mount, :index
       live "/inside/navigation", InsideLive.Navigation, :index
@@ -42,7 +42,11 @@ defmodule InterWeb.Router do
   end
 
   live_session :outside,
-    on_mount: [{InterWeb.Navigation, :redirect_if_was_inside}],
+    on_mount: [
+      {InterWeb.Navigation, :redirect_if_was_inside},
+      {InterWeb.Navigation, :assign_current_path}
+    ],
+    root_layout: {InterWeb.LayoutView, :outside},
     session: %{"outside" => true} do
     scope "/", InterWeb do
       pipe_through [:browser, :redirect_if_was_inside]
