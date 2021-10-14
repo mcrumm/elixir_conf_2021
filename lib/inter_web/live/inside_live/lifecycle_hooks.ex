@@ -14,8 +14,21 @@ defmodule InterWeb.InsideLive.LifecycleHooks do
   @external_resource contenteditable_path
   @content_editable File.read!(contenteditable_path)
 
+  navigation_path = Path.join([__DIR__, "..", "..", "navigation.ex"])
+  @external_resource navigation_path
+  @navigation_ex File.read!(navigation_path)
+
+  navigation_component_path = Path.join([__DIR__, "..", "..", "components", "navigation.ex"])
+  @external_resource navigation_component_path
+  @navigation_component File.read!(navigation_component_path)
+
   @impl Phoenix.LiveView
   def mount(_, _, socket) do
-    {:ok, assign(socket, live_recompiler: @live_recompiler, content_editable: @content_editable)}
+    {:ok,
+     socket
+     |> assign(:live_recompiler, @live_recompiler)
+     |> assign(:content_editable, @content_editable)
+     |> assign(:navigation_ex, @navigation_ex)
+     |> assign(:navigation_component, @navigation_component)}
   end
 end

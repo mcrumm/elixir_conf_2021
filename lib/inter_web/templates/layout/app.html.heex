@@ -1,16 +1,14 @@
 <header>
   <section class="container">
-    <nav aria-label="Breadcrumb" class="breadcrumb">
-      <ol>
-        <li><%= link "The LiveView Lifecycle", to: Routes.page_path(InterWeb.Endpoint, :index) %></li>
-        <li><%= link "1. Mount", to: Routes.inside_mount_path(InterWeb.Endpoint, :index) %></li>
-        <li><%= link "2. Navigation", to: Routes.inside_navigation_path(InterWeb.Endpoint, :index) %></li>
-        <li><%= link "3. Events", to: Routes.inside_events_path(InterWeb.Endpoint, :index) %></li>
-        <li><%= link "4. Messages", to: Routes.inside_messages_path(InterWeb.Endpoint, :index) %></li>
-        <li><%= link "5. Hooks", to: Routes.inside_lifecycle_hooks_path(InterWeb.Endpoint, :index) %></li>
-        <li><%= link "6. Sessions", to: Routes.inside_live_sessions_path(InterWeb.Endpoint, :index) %></li>
-      </ol>
-    </nav>
+    <.breadcrumbs for={@current_path}>
+      <:breadcrumb to={Routes.page_path(InterWeb.Endpoint, :index)}>The LiveView Lifecycle</:breadcrumb>
+      <:breadcrumb to={Routes.inside_mount_path(InterWeb.Endpoint, :index)}>1. Mount</:breadcrumb>
+      <:breadcrumb to={Routes.inside_navigation_path(InterWeb.Endpoint, :index)}>2. Navigation</:breadcrumb>
+      <:breadcrumb to={Routes.inside_events_path(InterWeb.Endpoint, :index)}>3. Events</:breadcrumb>
+      <:breadcrumb to={Routes.inside_messages_path(InterWeb.Endpoint, :index)}>4. Messages</:breadcrumb>
+      <:breadcrumb to={Routes.inside_lifecycle_hooks_path(InterWeb.Endpoint, :index)}>5. Hooks</:breadcrumb>
+      <:breadcrumb to={Routes.inside_live_sessions_path(InterWeb.Endpoint, :index)}>6. Sessions</:breadcrumb>
+    </.breadcrumbs>
   </section>
 </header>
 <main class="container">

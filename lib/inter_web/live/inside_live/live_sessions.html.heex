@@ -1,4 +1,11 @@
-<h1>6. Inside Live Sessions</h1>
+<div id="color-tube">
+  <div class="slide">
+    <h1>6. Inside Live Sessions</h1>
+    <.code_inspector contents={@router_ex} summary="router.ex" />
+
+    <p><%= link "Next: Outside", to: Routes.outside_path(InterWeb.Endpoint, :index) %></p>
+  </div>
+</div>
 
 <section class="next-prev">
   <%= live_redirect "1. Mount", class: "next", to: Routes.inside_mount_path(InterWeb.Endpoint, :index) %>

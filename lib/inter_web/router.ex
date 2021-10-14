@@ -1,6 +1,12 @@
 defmodule InterWeb.Router do
   use InterWeb, :router
 
+  import InterWeb.Navigation,
+    only: [
+      assign_current_path: 2,
+      redirect_if_was_inside: 2
+    ]
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -8,6 +14,7 @@ defmodule InterWeb.Router do
     plug :put_root_layout, {InterWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :assign_current_path
     plug PhoenixWeb.LiveProfiler
   end
 
@@ -15,26 +22,32 @@ defmodule InterWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", InterWeb do
-    pipe_through :browser
+  live_session :inside,
+    on_mount: [{InterWeb.Navigation, :assign_current_path}],
+    session: %{"inside" => true} do
+    scope "/", InterWeb do
+      pipe_through :browser
 
-    get "/", PageController, :index
+      get "/", PageController, :index
+      live "/inside", InsideLive, :index
+      live "/inside/mount", InsideLive.Mount, :index
+      live "/inside/navigation", InsideLive.Navigation, :index
+      live "/inside/navigation/color/:colour", InsideLive.Navigation, :color
+      live "/inside/events", InsideLive.Events, :index
+      live "/inside/events/color/:red/:green/:blue", InsideLive.Events, :color
+      live "/inside/messages", InsideLive.Messages, :index
+      live "/inside/sessions", InsideLive.LiveSessions, :index
+      live "/inside/lifecycle-hooks", InsideLive.LifecycleHooks, :index
+    end
+  end
 
-    live "/inside", InsideLive, :index
-
-    live "/inside/mount", InsideLive.Mount, :index
-
-    live "/inside/navigation", InsideLive.Navigation, :index
-    live "/inside/navigation/color/:colour", InsideLive.Navigation, :color
-
-    live "/inside/events", InsideLive.Events, :index
-    live "/inside/events/color/:red/:green/:blue", InsideLive.Events, :color
-
-    live "/inside/messages", InsideLive.Messages, :index
-
-    live "/inside/sessions", InsideLive.LiveSessions, :index
-
-    live "/inside/lifecycle-hooks", InsideLive.LifecycleHooks, :index
+  live_session :outside,
+    on_mount: [{InterWeb.Navigation, :redirect_if_was_inside}],
+    session: %{"outside" => true} do
+    scope "/", InterWeb do
+      pipe_through [:browser, :redirect_if_was_inside]
+      live "/outside", OutsideLive, :index
+    end
   end
 
   # Other scopes may use custom stacks.

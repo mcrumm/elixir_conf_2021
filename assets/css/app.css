@@ -57,6 +57,12 @@ header nav li {
   text-align: left;
 }
 
+header nav.breadcrumb [aria-current="page"] {
+  color: rgb(20, 20, 20);
+  font-weight: 700;
+  text-decoration: none;
+}
+
 nav.subnav>ol {
   list-style: lower-alpha inside;
 }
@@ -138,6 +144,10 @@ section.row.inspector {
 [contenteditable="true"]:focus {
   border: none;
   outline: none;
+}
+
+.highlight code {
+  font-size: 16px;
 }
 
 /* Color block */
