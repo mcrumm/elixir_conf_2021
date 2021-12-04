@@ -6,23 +6,12 @@ defmodule InterWeb.InsideLive.Mount do
     socket =
       socket
       |> assign_new(:useragent, fn ->
-        get_connect_info(socket)[:useragent]
+        get_connect_info(socket)[:user_agent]
       end)
       |> assign_new(:lang, fn ->
-        get_connect_params(socket)["lang"]
+        get_connect_params(socket)["language"]
       end)
 
     {:ok, socket}
-  end
-
-  @impl Phoenix.LiveView
-  def render(assigns) do
-    ~H"""
-    <section class="row inspector">
-      <section class="column">
-        <.code_editor id="messages-inspector" contents={@contents} />
-      </section>
-    </section>
-    """
   end
 end

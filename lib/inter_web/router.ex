@@ -28,7 +28,7 @@ defmodule InterWeb.Router do
     scope "/", InterWeb do
       pipe_through :browser
 
-      live "/", PageController, :index, as: :page
+      get "/", PageController, :index, as: :page
       live "/inside", InsideLive, :index
       live "/inside/mount", InsideLive.Mount, :index
       live "/inside/navigation", InsideLive.Navigation, :index

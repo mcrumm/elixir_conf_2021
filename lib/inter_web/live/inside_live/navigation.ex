@@ -15,7 +15,7 @@ defmodule InterWeb.InsideLive.Navigation do
     apply_action(socket, socket.assigns.live_action, params)
   end
 
-  defp apply_action(socket, :color, %{"name" => color})
+  defp apply_action(socket, :color, %{"colour" => color})
        when color in @colors do
     {:noreply, socket |> assign(:color, color) |> update(:changes, &(&1 + 1))}
   end

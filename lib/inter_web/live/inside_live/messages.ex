@@ -19,10 +19,11 @@ defmodule InterWeb.InsideLive.Messages do
   end
 
   @impl Phoenix.LiveView
-  def handle_event("sned", %{"chat" => %{"msg" => msg}}, socket) do
+  def handle_event("send", %{"chat" => %{"msg" => msg}}, socket) do
+    lv = self()
     :ok =
       Agent.update(socket.assigns.agent, fn _ ->
-        Process.send_after(self(), {__MODULE__, msg}, 1_000)
+        Process.send_after(lv, {__MODULE__, msg}, 1_000)
       end)
 
     {:noreply, socket}
