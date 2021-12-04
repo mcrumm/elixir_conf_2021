@@ -11,7 +11,7 @@ defmodule InterWeb.Navigation do
     )
   end
 
-  def on_mount(_, _, _, %{private: %{root_view: PhoenixWeb.Profiler.ToolbarLive}} = socket) do
+  def on_mount(_, _, _, %{private: %{root_view: PhoenixProfiler.ToolbarLive}} = socket) do
     {:cont, socket}
   end
 

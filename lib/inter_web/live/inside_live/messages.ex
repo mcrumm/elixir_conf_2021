@@ -15,8 +15,7 @@ defmodule InterWeb.InsideLive.Messages do
 
   @impl Phoenix.LiveView
   def handle_info({__MODULE__, msg}, socket) do
-    dump(msg)
-    {:noreply, socket}
+    {:noreply, assign(socket, :msg, msg)}
   end
 
   @impl Phoenix.LiveView

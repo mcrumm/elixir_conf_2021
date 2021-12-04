@@ -15,7 +15,7 @@ defmodule InterWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :assign_current_path
-    plug PhoenixWeb.LiveProfiler
+    plug PhoenixProfiler
   end
 
   pipeline :api do
