@@ -9,6 +9,11 @@ defmodule InterWeb.Telemetry do
   @impl true
   def init(_arg) do
     children = [
+      # PhoenixProfiler collects detailed information about web requests.
+      # It is safe to start the profiler process in all environments–
+      # request profile configuration is done within the `:phoenix_profiler`
+      # key on your Endpoint. Learn more here: https://github.com/mcrumm/phoenix_profiler
+      {PhoenixProfiler, name: InterWeb.Profiler},
       # Telemetry poller will execute the given period measurements
       # every 10_000ms. Learn more here: https://hexdocs.pm/telemetry_metrics
       {:telemetry_poller, measurements: periodic_measurements(), period: 10_000}

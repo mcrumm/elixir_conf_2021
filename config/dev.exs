@@ -22,6 +22,7 @@ config :inter, InterWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
+  phoenix_profiler: [server: InterWeb.Profiler],
   secret_key_base: "ZzBMRSWfmsG64xD9ATt+6LhJ1hGLsdBMfnlp9ImImaiQpB/95ZPRQSJVn/wNYm0I",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)

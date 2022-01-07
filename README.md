@@ -1,5 +1,9 @@
 # Inter
 
+> This repo contains the code used for my ElixirConf US 2021 talk entitled "Getting to Know the LiveView Lifecycle"
+> 
+> Watch it here: https://www.youtube.com/watch?v=J1l4W0T7Jgg
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
