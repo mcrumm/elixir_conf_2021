@@ -15,6 +15,12 @@ defmodule InterWeb.Navigation do
     {:cont, socket}
   end
 
+  # Ignore LiveViews that were not mounted at the router.
+  def on_mount(hook, :not_mounted_at_router, _, socket)
+      when hook in [:assign_current_path, :redirect_if_was_inside] do
+    {:cont, socket}
+  end
+
   # Lifecycle Hook
   def on_mount(:assign_current_path, _params, _session, socket) do
     {:cont,
